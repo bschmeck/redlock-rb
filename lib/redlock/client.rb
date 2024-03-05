@@ -214,7 +214,8 @@ module Redlock
             conn.call('EVALSHA', Scripts::UNLOCK_SCRIPT_SHA, 1, resource, val)
           }
         end
-      rescue
+      rescue => e
+        puts "Error unlocking #{resource} - #{e.message}"
         # Nothing to do, unlocking is just a best-effort attempt.
       end
 
